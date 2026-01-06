@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apthiri Charan | Digital Portfolio</title>
+    <script src="https://kit.fontawesome.com/c1cc3e8b09.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+         :root {
+            --bg-color: #080808;
+            --secondary-bg-color: #262626;
+            --text-color: #ffffff;
+            --accent-color: #00aaff;
+            --highlight-color: #66ccff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .container {
+            padding: 20px 10%;
+        }
+        
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        #header {
+            height: 100vh;
+            background: #111;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+        }
+        
+        nav ul li {
+            display: inline-block;
+            margin: 10px 20px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.4s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-text {
+            margin-top: 20vh;
+        }
+        
+        .header-text h1 {
+            font-size: 60px;
+        }
+        
+        .header-text h1 span {
+            color: var(--accent-color);
+        }
+        
+        .header-text p {
+            font-size: 24px;
+            color: var(--highlight-color);
+            margin-top: 10px;
+        }
+        
+        #about {
+            padding: 80px 0;
+        }
+        
+        .about-col-1 {
+            flex-basis: 35%;
+        }
+        
+        .about-col-1 img {
+            width: 100%;
+            border-radius: 15px;
+        }
+        
+        .about-col-2 {
+            flex-basis: 60%;
+        }
+        
+        .sub-title {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-text {
+            color: var(--highlight-color);
+            font-weight: 600;
+        }
+        
+        .tab-titles {
+            display: flex;
+            margin: 30px 0;
+        }
+        
+        .tab-links {
+            margin-right: 40px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .tab-links::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.4s;
+        }
+        
+        .tab-links.active-link::after {
+            width: 50%;
+        }
+        
+        .tab-contents {
+            display: none;
+        }
+        
+        .tab-contents.active-tab {
+            display: block;
+        }
+        
+        .tab-contents ul li {
+            list-style: none;
+            margin: 12px 0;
+        }
+        
+        #expertise {
+            padding: 80px 0;
+        }
+        
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .services-list div {
+            background: var(--secondary-bg-color);
+            padding: 40px;
+            border-radius: 12px;
+            transition: 0.4s;
+        }
+        
+        .services-list div:hover {
+            background: var(--accent-color);
+            color: #000;
+            transform: translateY(-10px);
+        }
+        
+        .services-list i {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+        
+        #portfolio {
+            padding: 80px 0;
+        }
+        
+        .work-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .work {
+            position: relative;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .work img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .layer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), var(--accent-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .work:hover img {
+            transform: scale(1.1);
+        }
+        
+        .work:hover .layer {
+            opacity: 1;
+        }
+        
+        .layer h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .layer p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 50px;
+            background: linear-gradient(to bottom, #0077aa, var(--accent-color));
+            color: #000;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .work {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        
+        #contact {
+            padding: 80px 0;
+        }
+        
+        .social-icons a {
+            font-size: 30px;
+            margin-right: 15px;
+            color: #ababab;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: var(--secondary-bg-color);
+        }
+        
+        @media (max-width:600px) {
+            .header-text h1 {
+                font-size: 32px;
+            }
+            nav ul {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">Portfolio</div>
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#expertise">Expertise</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-text">
+                <h1>Hi, I'm <span>Apthiri Charan</span></h1>
+                <p>Python Developer | Data-Driven Web Developer | Aspiring Data Engineer</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="Mine.jpg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>
+                        I am a Python-focused developer with strong problem-solving skills and hands-on experience in building data-driven and web-based applications. I enjoy converting real-world problems into scalable technical solutions using
+                        <span class="highlight-text">Python</span>, <span class="highlight-text">SQL</span>, and modern web technologies. As a fresher, I bring strong fundamentals, continuous learning habits, and adaptability.
+                    </p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills', event)">Skills</p>
+                        <p class="tab-links" onclick="opentab('education', event)">Education</p>
+                        <p class="tab-links" onclick="opentab('softskills', event)">Soft Skills</p>
+                    </div>
+
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span class="highlight-text">Backend & Database:</span> Python (Automation, Data Processing), SQL (Joins, Subqueries)</li>
+                            <li><span class="highlight-text">Frontend:</span> HTML, CSS, JavaScript (Responsive UI, DOM)</li>
+                            <li><span class="highlight-text">Tools:</span> VS Code, PyCharm, SQL Plus</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li>2021-2025 | B.Tech – Electrical & Electronics Engineering (89%)</li>
+                            <li>2019-2021 | Intermediate MPC (92%)</li>
+                            <li>2018-2019 | SSC (90%)</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="softskills">
+                        <ul>
+                            <li>Clear technical communication</li>
+                            <li>Quick learning and adaptability</li>
+                            <li>Strong time management</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="expertise">
+        <div class="container">
+            <h1 class="sub-title">Technical Expertise</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fas fa-server"></i>
+                    <h2>Backend & Data</h2>
+                    <p>Python-based data processing, SQL optimization, and automation-driven solutions.</p>
+                </div>
+                <div>
+                    <i class="fas fa-code"></i>
+                    <h2>Frontend Development</h2>
+                    <p>Responsive and user-friendly interfaces using HTML, CSS, and JavaScript.</p>
+                </div>
+                <div>
+                    <i class="fas fa-robot"></i>
+                    <h2>Automation</h2>
+                    <p>Reducing manual effort through script-based reporting and workflow automation.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">Projects</h1>
+            <div class="work-list">
+
+                <div class="work">
+                    <img src="Travel.png">
+                    <div class="layer">
+                        <h3>Travel Choice</h3>
+                        <p>Responsive tourism website built using HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="Agrigo.jpg">
+                    <div class="layer">
+                        <h3>Agri Go</h3>
+                        <p>Python & SQL-based agriculture monitoring system reducing manual effort by 40%.</p>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="ai.jpeg">
+                    <div class="layer">
+                        <h3>AI Health Appointment System</h3>
+                        <p>Concept-level design focusing on automated scheduling and emergency prioritization.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="contact">
+        <div class="container">
+            <h1 class="sub-title">Contact Me</h1>
+            <p><i class="fas fa-paper-plane"></i> apthiricharan123@gmail.com</p>
+            <p><i class="fas fa-phone-square-alt"></i> +91 7989229480</p>
+
+            <div class="social-icons">
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+
+            <a href="https://drive.google.com/file/d/1lRLvNe1iQxzR254YD07-KajyIAqwGEXy/view?usp=sharing" target="_blank" class="btn">Download Resume</a>
+        </div>
+    </div>
+
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname, event) {
+            for (let tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (let tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+
+</body>
+
+</html>
